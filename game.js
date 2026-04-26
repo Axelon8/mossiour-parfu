@@ -101,11 +101,11 @@ function addPipe() {
   });
 }
 
-function update() {
-  state.frames += 1;
+function update(step) {
+  state.frames += step;
 
   for (const cloud of state.clouds) {
-    cloud.x -= 0.25 * cloud.s;
+    cloud.x -= 0.25 * cloud.s * step;
     if (cloud.x < -92) cloud.x = canvas.width + 72;
   }
 
@@ -116,20 +116,20 @@ function update() {
   }
 
   if (state.cat.canHover && state.cat.vy >= -0.05 && state.cat.hoverTimer < state.hoverFrames) {
-    state.cat.hoverTimer += 1;
+    state.cat.hoverTimer += step;
     state.cat.vy = 0;
   } else {
     if (state.cat.hoverTimer >= state.hoverFrames) state.cat.canHover = false;
-    state.cat.vy += state.gravity;
+    state.cat.vy += state.gravity * step;
   }
-  state.cat.y += state.cat.vy;
+  state.cat.y += state.cat.vy * step;
   state.cat.tilt = Math.max(-0.58, Math.min(0.82, state.cat.vy / 10));
 
   const lastPipe = state.pipes[state.pipes.length - 1];
   if (!lastPipe || lastPipe.x < canvas.width - 238) addPipe();
 
   for (const pipe of state.pipes) {
-    pipe.x -= state.speed;
+    pipe.x -= state.speed * step;
     if (!pipe.scored && pipe.x + pipe.width < state.cat.x - state.cat.r) {
       pipe.scored = true;
       state.score += 1;
@@ -320,8 +320,14 @@ function draw() {
   drawCat();
 }
 
-function loop() {
-  update();
+let lastFrameTime = 0;
+
+function loop(now) {
+  if (!lastFrameTime) lastFrameTime = now;
+  const step = Math.min((now - lastFrameTime) / 16.67, 2);
+  lastFrameTime = now;
+
+  update(step);
   draw();
   requestAnimationFrame(loop);
 }
