@@ -3,35 +3,35 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mossiour Parfu</title>
+    <title>Приключенията на Мосю Парфу</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <main class="game-shell">
-      <section class="hud" aria-label="Game status">
+      <section class="hud" aria-label="Състояние на играта">
         <div>
-          <p class="eyebrow">Mossiour Parfu</p>
-          <h1>Thread the rooftops.</h1>
+          <p class="eyebrow title-script">Приключенията на Мосю Парфу</p>
+          <h1>Премини между покривите.</h1>
         </div>
         <div class="scoreboard" aria-live="polite">
-          <span>Score</span>
+          <span>Точки</span>
           <strong id="score">0</strong>
         </div>
       </section>
 
-      <section class="stage-wrap" aria-label="Game area">
-        <canvas id="game" width="420" height="640" aria-label="Flappy style game with a raccoon colored cat"></canvas>
+      <section class="stage-wrap" aria-label="Игрално поле">
+        <canvas id="game" width="420" height="640" aria-label="Игра в стил Flappy с котарак в цветове на енот"></canvas>
         <div class="overlay" id="overlay">
-          <p class="status" id="status">Ready</p>
-          <button id="startButton" type="button">Start game</button>
-          <p class="hint">Tap, click, or press Space to flap.</p>
+          <p class="status" id="status">Готови</p>
+          <button id="startButton" type="button">Започни игра</button>
+          <p class="hint">Докосни, кликни или натисни Space за скок.</p>
         </div>
       </section>
 
-      <section class="controls" aria-label="Controls">
-        <button class="icon-button" id="flapButton" type="button" aria-label="Flap">^</button>
-        <button id="restartButton" type="button">Restart</button>
-        <p>Best: <strong id="best">0</strong></p>
+      <section class="controls" aria-label="Контроли">
+        <button class="icon-button" id="flapButton" type="button" aria-label="Скок">^</button>
+        <button id="restartButton" type="button">Отначало</button>
+        <p>Най-добър: <strong id="best">0</strong></p>
       </section>
     </main>
 

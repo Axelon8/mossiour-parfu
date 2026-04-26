@@ -49,7 +49,7 @@ function reset() {
   state.cat.canHover = false;
   state.cat.tilt = 0;
   scoreEl.textContent = "0";
-  showOverlay("Mossiour Parfu", "Start game");
+  showOverlay("Приключенията на Мосю Парфу", "Започни игра");
 }
 
 function start() {
@@ -65,7 +65,7 @@ function gameOver() {
   state.best = Math.max(state.best, state.score);
   localStorage.setItem("raccoonCatBest", String(state.best));
   bestEl.textContent = state.best;
-  showOverlay("Game over", "Try again");
+  showOverlay("Край на играта", "Опитай пак");
 }
 
 function showOverlay(status, buttonText) {
